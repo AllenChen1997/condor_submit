@@ -14,7 +14,7 @@ echo "2 is $2"
 root -b -q ./readElement.C++\(\"$1\",\"$2\"\)
 echo "finish the code"
 if [ -e "$2" ]; then
-  until xrdcp -f "$2" /eos/user/k/kuchen/myOutput/queueOut/"$2"; do
+  until xrdcp -f "$2" /eos/user/k/kuchen/condor_test/"$2"; do
     sleep 60
     echo "Retrying"  
   done

@@ -1,9 +1,9 @@
 universe = vanilla
 Proxy_filename = x509up
 Proxy_path = /afs/cern.ch/user/k/kuchen/private/$(Proxy_filename)
-request_memory = 8192
+request_memory = 4096
 request_cpus = 4
-+JobFlavour = "tomorrow"
++JobFlavour = "longlunch"
 # Name          Duration
 # espresso      20min   
 # microcentury  1h  
