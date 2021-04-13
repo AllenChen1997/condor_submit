@@ -6,6 +6,7 @@ you can follow the step below to test this frame work in lxplus7
 # step 1: setup env.
 	git clone https://github.com/AllenChen1997/condor_submit.git
 	cd condor_submit
+	mkdir log error output
 	voms-proxy-init --voms cms --valid 168:00
 	
 after init voms you may see the line: Created proxy in /tmp/x509up_xxxxxxx
