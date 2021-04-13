@@ -19,7 +19,7 @@ there are some important variables in both files needed to be edited.
 
 in "submit_multi.sub", change the name in Proxy_path
 
-in "", change the directory to yours(the exist one) in line:
+in "runAnalysis.sh", change the directory to yours(the exist one) in line:
 
 until xrdcp -f "$2" /eos/user/k/kuchen/condor_test/"$2"; do
 
