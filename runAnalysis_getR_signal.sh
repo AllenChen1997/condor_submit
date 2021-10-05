@@ -11,10 +11,11 @@ voms-proxy-info -all -file $3
 
 echo "1 is $1"
 inputfile=`echo $1|rev |cut -d '/' -f 1|rev`
-root -b -q ./testTrig.C++\(\"${inputfile}\",\"$2\"\)
+root -b -q ./GetRfunction_signal.C\(\"$inputfile\",\"$2\"\)
 echo "finish the code"
 if [ -e "$2" ]; then
-  until xrdcp -f "$2" /eos/user/k/kuchen/Trig_h_withHT_trigEff/"$2"; do
+  #until xrdcp -f "$2" /eos/user/k/kuchen/getR_QCD_MC/multirun_signal/"$2"; do
+  until xrdcp -f "$2" /eos/user/k/kuchen/getR_QCD_MC/multirun_signal_resubmit/"$2"; do
     sleep 60
     echo "Retrying"  
   done

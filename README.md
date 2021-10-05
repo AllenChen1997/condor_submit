@@ -26,11 +26,17 @@ until xrdcp -f "$2" /eos/user/k/kuchen/condor_test/"$2"; do
 
 # step 3: submit the condor job
 
-	condor_submit submit_multi.sub
+	bash file_split.sh <filelist.txt>
+
+you need to prepare the filelist which contains the list of input root files
 	
 if you want to see the status:
 
 	condor_q
 	
+####  extra contains ####
+
+cleanlog.sh is used to clean the submit log for condor jobs, the old logs will move to old_*
+
 ##################################################################
 there are more details in ./Condor_job_submit.pdf

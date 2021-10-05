@@ -13,8 +13,8 @@ Proxy_path = /afs/cern.ch/user/k/kuchen/private/$(Proxy_filename)
 # testmatch     3d  
 # nextweek      1w  
 
-listFile = tmplist.txt
-outputname = testlist
+listFile = JetHT-Run2017F-31Mar2018-v1_for_submit.txt
+outputname = JetHT-Run2017F-31Mar2018-v1
 outputfile = $(outputname)_$(Cluster)_$(Process).root
 
 executable = runAnalysis.sh
