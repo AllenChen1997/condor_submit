@@ -38,6 +38,14 @@ if you want to see the status:
 ####  extra contains ####
 
 cleanlog.sh is used to clean the submit log for condor jobs, the old logs will move to old_*
+```
+bash cleanlog.sh
+```
 
+resubmit_list_check.sh is used to collect the input files which needed to be resubmit again. resubmitlist.txt is the default output.
+```
+bash resubmit_list_check.sh
+bash file_split.sh resubmitlist.txt
+```
 ##################################################################
 there are more details in ./Condor_job_submit.pdf
