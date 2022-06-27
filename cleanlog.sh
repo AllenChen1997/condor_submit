@@ -1,4 +1,6 @@
 #!/bin/bash
+# this code is used to clean the log which produced by condor 
+# effect to the folder including log, error, and output
 echo "removing old_log"
 rm -r old_log 2> /dev/null
 echo "removing old_error"

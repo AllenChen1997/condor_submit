@@ -1,13 +1,20 @@
 #!bin/bash
 
 # this is used to split lines into many pieces
+# options can adjust
 linesPerFile=100
-splited_listdir="filelist"
+splited_listdir="signalList"
+#####################################################
+if [ -z $1 ]; then
+  echo "usage: bash file_split.sh <yourinputlist>"
+  exit 0
+fi
 
 inputF=$1
+
 Nmax=`wc -l $inputF|cut -d ' ' -f 1`
 c1=1  # this will be used as line counter
-c2=100
+c2=$linesPerFile
 i=0
 prefix=`echo $inputF| rev |cut -d '/' -f 1 |cut -d '.' -f 2 |rev`
 echo "adding new directory $splited_listdir/$prefix"
@@ -20,12 +27,12 @@ while [ $c1 -le $Nmax ];do
   newFlist="${prefix}_${i}" 
   sed -n "${c1},${c2}p" $inputF > $splited_listdir/$prefix/${newFlist}.txt
   (( i = i + 1 ))
-  (( c1 = c1 + 100 ))
-  (( c2 = c2 + 100 ))
+  (( c1 = c1 + $linesPerFile ))
+  (( c2 = c2 + $linesPerFile ))
 done
 echo "make the splited list ${prefix}_for_submit.txt"
 ls $splited_listdir/$prefix/* > ${prefix}_for_submit.txt
-cp submit_multi_getR_quever_v2.sub submit_multi_getR_quever_v2_temp.sub
-sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_multi_getR_quever_v2_temp.sub
-sed -i "/outputname = /c outputname = ${prefix}" submit_multi_getR_quever_v2_temp.sub
-condor_submit submit_multi_getR_quever_v2_temp.sub |tee ${prefix}.log
+cp submit_multi.sub submit_multi_temp.sub
+sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_multi_temp.sub
+sed -i "/outputname = /c outputname = ${prefix}" submit_multi_temp.sub
+condor_submit submit_multi_temp.sub |tee ${prefix}.log
