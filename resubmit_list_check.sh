@@ -25,3 +25,7 @@ for alog in $logs; do
   echo $files >> $outputfilelist
 #  echo $alog
 done
+if [ ! -s $outputfilelist ]; then
+  echo "no need to do resubmit. well done"
+  rm $outputfilelist
+fi
