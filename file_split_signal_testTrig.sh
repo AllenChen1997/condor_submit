@@ -27,6 +27,6 @@ done
 echo "make the splited list ${prefix}_for_submit.txt"
 ls $splited_listdir/$prefix/* > ${prefix}_for_submit.txt
 cp submit_testTrig.sub submit_testTrig_temp.sub
-sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_multi_temp.sub
-sed -i "/outputname = /c outputname = ${prefix}" submit_multi_temp.sub
+sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_testTrig_temp.sub
+sed -i "/outputname = /c outputname = ${prefix}" submit_testTrig_temp.sub
 condor_submit submit_testTrig_temp.sub |tee ${prefix}.log
