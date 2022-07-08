@@ -12,7 +12,7 @@ i=0
 prefix=`echo $inputF| rev |cut -d '/' -f 1 |cut -d '.' -f 2 |rev`
 echo "adding new directory $splited_listdir/$prefix"
 mkdir -p $splited_listdir/$prefix
-rm $splited_listdir/$prefix/*
+rm $splited_listdir/$prefix/* 2> /dev/null
 echo "start to do the split"
 while [ $c1 -le $Nmax ];do
   if [ $c2 -gt $Nmax ];then
