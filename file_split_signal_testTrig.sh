@@ -4,6 +4,12 @@
 linesPerFile=100
 splited_listdir="signalList"
 
+if [ -z $1 ];then
+	echo "need 1 input, usage as below:"
+	echo "bash file_split_signal_testTrig.sh inputlist.txt"
+	exit 0
+fi
+
 inputF=$1
 Nmax=`wc -l $inputF|cut -d ' ' -f 1`
 c1=1  # this will be used as line counter
