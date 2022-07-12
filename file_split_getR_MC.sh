@@ -25,7 +25,7 @@ while [ $c1 -le $Nmax ];do
 done
 echo "make the splited list ${prefix}_for_submit.txt"
 ls $splited_listdir/$prefix/* > ${prefix}_for_submit.txt
-cp submit_multi_getR_quever_v2.sub submit_multi_getR_quever_v2_temp.sub
-sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_multi_getR_quever_v2_temp.sub
-sed -i "/outputname = /c outputname = ${prefix}" submit_multi_getR_quever_v2_temp.sub
-condor_submit submit_multi_getR_quever_v2_temp.sub |tee ${prefix}.log
+cp submit_getR_MC.sub submit_getR_MC_temp.sub
+sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_getR_MC_temp.sub
+sed -i "/outputname = /c outputname = ${prefix}" submit_getR_MC_temp.sub
+condor_submit submit_getR_MC_temp.sub |tee ${prefix}.log

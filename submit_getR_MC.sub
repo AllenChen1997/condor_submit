@@ -17,12 +17,12 @@ listFile = runlist_getR.txt
 outputname = analyze
 outputfile = $(outputname)_$(Cluster)_$(Process).root
 
-executable = runAnalysis_getR_multi.sh
+executable = runAnalysis_getR_MC.sh
 should_transfer_files = YES
 output = output/condor.$(Cluster).$(Process).out
 error = error/condor.$(Cluster).$(Process).err
 log = log/condor.$(Cluster).$(Process).log
-transfer_input_files = runAnalysis_getR_multi.sh, ../GetRfunction_multi.C, $(inputfile), dummy.txt
+transfer_input_files = runAnalysis_getR_MC.sh, ../GetRfunction_MC.C, $(inputfile), dummy.txt
 transfer_output_files = dummy.txt
 
 on_exit_remove = (ExitBySignal == False) && (ExitCode == 0)
