@@ -4,10 +4,16 @@
 linesPerFile=100
 splited_listdir="filelist"
 
+if [ -z $1 ];then
+	echo "need 1 input, usage as below:"
+	echo "bash file_split_signal_testTrig.sh inputlist.txt"
+	exit 0
+fi
+
 inputF=$1
 Nmax=`wc -l $inputF|cut -d ' ' -f 1`
 c1=1  # this will be used as line counter
-c2=100
+c2=$linesPerFile
 i=0
 prefix=`echo $inputF| rev |cut -d '/' -f 1 |cut -d '.' -f 2 |rev`
 echo "adding new directory $splited_listdir/$prefix"
@@ -20,8 +26,8 @@ while [ $c1 -le $Nmax ];do
   newFlist="${prefix}_${i}" 
   sed -n "${c1},${c2}p" $inputF > $splited_listdir/$prefix/${newFlist}.txt
   (( i = i + 1 ))
-  (( c1 = c1 + 100 ))
-  (( c2 = c2 + 100 ))
+  (( c1 = c1 + $linesPerFile ))
+  (( c2 = c2 + $linesPerFile ))
 done
 echo "make the splited list ${prefix}_for_submit.txt"
 ls $splited_listdir/$prefix/* > ${prefix}_for_submit.txt
