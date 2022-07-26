@@ -2,12 +2,12 @@
 
 # this is used to split lines into many pieces
 linesPerFile=100
-splited_listdir="filelist"
+splited_listdir="signalList"
 
 if [ -z $1 ];then
-	echo "need 1 input, usage as below:"
-	echo "bash file_split_signal_testTrig.sh inputlist.txt"
-	exit 0
+        echo "need 1 input, usage as below:"
+        echo "bash file_split_signal_getR.sh inputlist.txt"
+        exit 0
 fi
 
 inputF=$1
@@ -18,7 +18,6 @@ i=0
 prefix=`echo $inputF| rev |cut -d '/' -f 1 |cut -d '.' -f 2 |rev`
 echo "adding new directory $splited_listdir/$prefix"
 mkdir -p $splited_listdir/$prefix
-rm $splited_listdir/$prefix/* 2> /dev/null
 echo "start to do the split"
 while [ $c1 -le $Nmax ];do
   if [ $c2 -gt $Nmax ];then
@@ -32,7 +31,7 @@ while [ $c1 -le $Nmax ];do
 done
 echo "make the splited list ${prefix}_for_submit.txt"
 ls $splited_listdir/$prefix/* > ${prefix}_for_submit.txt
-cp submit_testTrig.sub submit_testTrig_temp.sub
-sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_testTrig_temp.sub
-sed -i "/outputname = /c outputname = ${prefix}" submit_testTrig_temp.sub
-condor_submit submit_testTrig_temp.sub |tee ${prefix}.log
+cp submit_getR_Data.sub submit_getR_Data_temp.sub
+sed -i "/listFile = /c listFile = ${prefix}_for_submit.txt" submit_getR_Data_temp.sub
+sed -i "/outputname = /c outputname = ${prefix}" submit_getR_Data_temp.sub
+condor_submit submit_getR_Data_temp.sub |tee ${prefix}.log
